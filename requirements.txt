@@ -1,0 +1,9 @@
+aiortc
+aiohttp
+click
+firebase-admin
+tensorflow-cpu
+opencv-python
+moviepy
+einops
+ml_collections

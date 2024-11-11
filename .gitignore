@@ -1,0 +1,8 @@
+*.tmp
+env/**
+env
+*.mp4
+*.pyc
+*.pyc
+*.zip
+**/*.ipynb_checkpoints/
