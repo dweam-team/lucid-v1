@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "lucid-v1"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "ReadMe.md"
+include = ["maps"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+aiortc = "*"
+aiohttp = "*"
+click = "*"
+firebase-admin = "*"
+tensorflow-cpu = "*"
+opencv-python = "*"
+moviepy = "*"
+einops = "*"
+ml-collections = "*"
+jax = {extras = ["cuda12"], version = "*"}
+flax = "*"
+torchvision = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
