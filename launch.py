@@ -1,5 +1,5 @@
 # bsaically best generate function ever, load ema weights, nice
-from models.dit import DiT
+from .models.dit import DiT
 import jax.numpy as jnp
 import click
 import jax
@@ -9,11 +9,11 @@ import numpy as np
 from tqdm import tqdm
 import glob
 import pickle
-from utils.train_state import TrainState
+from .utils.train_state import TrainState
 from einops import rearrange
 from moviepy.editor import ImageSequenceClip
 import warnings
-from server import start_demo_thingy
+from .server import start_demo_thingy
 import ml_collections
 import flax
 # supress logs warning
@@ -77,7 +77,7 @@ vae_model_config =  ml_collections.ConfigDict({
 
 
 def setup_vae(is_encode=False):
-    from models.vqvae import VQVAE
+    from .models.vqvae import VQVAE
     import tensorflow as tf
     import pickle
     with tf.io.gfile.GFile("./vae_params_numpy.tmp", 'rb') as f:
