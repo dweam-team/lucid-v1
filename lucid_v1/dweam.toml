@@ -1,0 +1,20 @@
+# Diamond Atari Games
+type = "Lucid"
+entrypoint = "lucid_v1.dweam_game:LucidGame"
+repo_link = "https://github.com/soniccodes/lucid-v1/"
+thumbnail_dir = "thumbnails"
+
+# Game-specific metadata
+[games.minecraft]
+title = "Lucid Minecraft"
+description = "Block-based sandbox survival game"
+tags = ["First Person", "Minecraft"]
+
+[games.minecraft.buttons]
+"⬆️ Forward" = "W"
+"⬇️ Backward" = "S"
+"⬅️ Left" = "A"
+"➡️ Right" = "D"
+" Jump" = "Space"
+"🗡️ Attack" = "Left Click"
+"🛡️ Use" = "Right Click"

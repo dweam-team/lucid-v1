@@ -43,15 +43,19 @@ def create_model(patch_size, hidden_size, depth, num_heads, mlp_ratio, ctx_dropo
     )
 
 
-def get_cache_dir():
-    return os.environ.get('CACHE_DIR', None)
+def get_hf_cache_dir():
+    from dweam import get_cache_dir
+
+    base_cache_dir = get_cache_dir()
+    cache_dir = base_cache_dir / 'huggingface-data'
+    return str(cache_dir)
 
 def load_ema():
     import pickle
     tmp_path = hf_hub_download(
         repo_id="ramimmo/lucidv1",
         filename="ema_params_numpy.tmp",
-        cache_dir=get_cache_dir()
+        cache_dir=get_hf_cache_dir()
     )
     with open(tmp_path, 'rb') as f:
         model_chk = pickle.load(f)

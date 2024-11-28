@@ -4,10 +4,14 @@ version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 readme = "ReadMe.md"
-include = ["maps"]
+include = [
+    "maps",
+    "thumbnails",
+    "dweam.toml",
+]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.10,<3.12"
 aiortc = "*"
 aiohttp = "*"
 click = "*"
@@ -17,7 +21,10 @@ opencv-python = "*"
 moviepy = "*"
 einops = "*"
 ml-collections = "*"
-jax = {extras = ["cuda12"], version = "*"}
+jax = [
+    {version = "0.4.38", platform = "win32"},  # jax does not support gpu on windows
+    {extras = ["cuda12"], version = "0.4.38", platform = "linux"}
+]
 flax = "*"
 torchvision = "*"
 
