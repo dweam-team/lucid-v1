@@ -138,7 +138,9 @@ def load_validation_pickle(file_path):
     return latent_frames.astype(np.float32), actions_embeddings.astype(np.float32)
 
 def get_validation_samples(MAP_ID):
-    files = [f"./maps/{MAP_ID}.pickle"]
+    files = [
+        os.path.join(os.path.dirname(__file__), "maps", f"{MAP_ID}.pickle")
+    ]
     latents, actions = [], []
     for file in files:
         latent_frames, action_frames = load_validation_pickle(file)
