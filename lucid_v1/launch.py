@@ -16,6 +16,8 @@ import warnings
 from .server import start_demo_thingy
 import ml_collections
 import flax
+import os
+from huggingface_hub import hf_hub_download
 # supress logs warning
 warnings.filterwarnings("ignore")
 
@@ -42,9 +44,17 @@ def create_model(patch_size, hidden_size, depth, num_heads, mlp_ratio, ctx_dropo
     )
 
 
+def get_cache_dir():
+    return os.environ.get('CACHE_DIR', None)
+
 def load_ema():
     import pickle
-    with open('./ema_params_numpy.tmp', 'rb') as f:
+    tmp_path = hf_hub_download(
+        repo_id="ramimmo/lucidv1",
+        filename="ema_params_numpy.tmp",
+        cache_dir=get_cache_dir()
+    )
+    with open(tmp_path, 'rb') as f:
         model_chk = pickle.load(f)
         return model_chk
 
@@ -80,7 +90,13 @@ def setup_vae(is_encode=False):
     from .models.vqvae import VQVAE
     import tensorflow as tf
     import pickle
-    with tf.io.gfile.GFile("./vae_params_numpy.tmp", 'rb') as f:
+
+    tmp_path = hf_hub_download(
+        repo_id="ramimmo/lucidv1",
+        filename="vae_params_numpy.tmp",
+        cache_dir=get_cache_dir()
+    )
+    with tf.io.gfile.GFile(tmp_path, 'rb') as f:
         vae_params = pickle.loads(f.read())
     vae_model = VQVAE(vae_model_config, True)
     if is_encode:
